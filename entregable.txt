@@ -1,0 +1,45 @@
+ENTREGABLE - LABORATORIO DE JS WEB REQUESTS
+
+PASO 1 - Preguntas sobre XMLHttpRequest
+
+1. ¿Qué es el objeto generado por XMLHttpRequest?
+XMLHttpRequest (XHR) es un objeto de JavaScript que permite realizar solicitudes HTTP asincrónicas al servidor sin necesidad de recargar la página. Permite comunicarse con servidores web desde el navegador, enviando y recibiendo datos en formato texto, JSON, XML, etc.
+
+2. ¿Qué hace el método open de xhr?
+El método open() inicializa la solicitud HTTP. Recibe tres parámetros principales:
+- El método HTTP a usar (GET, POST, etc.)
+- La URL del recurso que se desea solicitar
+- Un booleano que indica si la solicitud es asincrónica (true) o sincrónica (false)
+En nuestro caso: xhr.open("GET", requestUrl, true) prepara una solicitud GET asincrónica.
+
+3. ¿Qué hace el método onload de xhr?
+onload es un manejador de eventos que se ejecuta cuando la solicitud HTTP se ha completado exitosamente y se han recibido todos los datos del servidor. En nuestro código, dentro de onload convertimos la respuesta JSON a un objeto JavaScript usando JSON.parse() y almacenamos los datos para su uso posterior.
+
+4. ¿Qué muestra la consola cuando escribes "data"?
+La consola muestra un objeto con la propiedad "json" que contiene un arreglo con todos los productos obtenidos del API de fakestoreapi. El objeto tiene la estructura: { json: [Array de productos] }
+
+PASO 2 - Arrow Functions
+
+1. ¿Qué significa => en el código de ejemplo?
+La sintaxis => (flecha) define una función flecha (arrow function) en JavaScript. Es una forma más concisa y moderna de escribir funciones anónimas. La sintaxis es: (parámetros) => { cuerpo de la función }
+En el ejemplo: array.forEach(element => { console.log(element); }) 
+La función flecha recibe cada elemento del arreglo y lo imprime en la consola.
+
+PASO 3 - Filtrado y Estilos
+
+1. ¿Cómo cambia de color el botón y cómo se deshabilita?
+Aunque en nuestro HTML no hay código JavaScript que cambie específicamente el color o desabilite los botones, esto se puede lograr con CSS y JavaScript:
+- El color cambia cuando se aplica la clase "active" o se modifica la propiedad style.backgroundColor
+- El botón se deshabilita agregando el atributo "disabled" a través de: btnSearch.disabled = true;
+Bootstrap proporciona estilos predefinidos para los estados de los botones (hover, active, disabled).
+
+MODIFICACIONES REALIZADAS EN request.js:
+
+1. Se agregaron referencias a los elementos del DOM (btnLoad, btnSearch, inputSearch)
+2. Se implementó el evento click en el botón "Load Data" para ejecutar getData()
+3. Se creó la función genTr() que recibe un objeto JSON y genera una fila de tabla con los datos
+4. Se modificó getData() para recorrer el arreglo con forEach() y agregar cada fila a la tabla mediante tbody.append()
+5. Se implementó el evento click en el botón "Search" que:
+   - Limpia la tabla (tbody.innerHTML = "")
+   - Filtra los datos usando filter() e includes() según el título ingresado
+   - Recorre los datos filtrados y agrega solo esas filas a la tabla
